@@ -37,7 +37,7 @@ set s2=-
 set s3=-
 set s4=-
 set s%select%=@
-echo Dungeons v1.21
+echo Dungeons v1.22
 echo ---------------
 echo [%s1%] New
 echo [%s2%] Load
@@ -697,10 +697,14 @@ if not "%player%"=="3" if not "%p3%"=="n" echo set l%level%x%mx%x%my%=.>>"%dir%\
 if not "%player%"=="4" if not "%p4%"=="n" echo set l%level%x%mx%x%my%=.>>"%dir%\read4.bat"
 )
 if %range% lss 4 set move=n
-if %range% lss 4 if "%move%"=="n" if %px% gtr !l%level%m%mon%x! set /a l%level%m%mon%x+=1&set reverse=set /a l%level%m%mon%x-=1&set move=y
-if %range% lss 4 if "%move%"=="n" if %px% lss !l%level%m%mon%x! set /a l%level%m%mon%x-=1&set reverse=set /a l%level%m%mon%x+=1&set move=y
-if %range% lss 4 if "%move%"=="n" if %py% gtr !l%level%m%mon%y! set /a l%level%m%mon%y+=1&set reverse=set /a l%level%m%mon%y-=1&set move=y
-if %range% lss 4 if "%move%"=="n" if %py% lss !l%level%m%mon%y! set /a l%level%m%mon%y-=1&set reverse=set /a l%level%m%mon%y+=1&set move=y
+if %range% lss 4 if "%move%"=="n" (
+if %px% gtr !l%level%m%mon%x! set /a l%level%m%mon%x+=1&set reverse=set /a l%level%m%mon%x-=1&set move=y
+if %px% lss !l%level%m%mon%x! set /a l%level%m%mon%x-=1&set reverse=set /a l%level%m%mon%x+=1&set move=y
+)
+if %range% lss 4 if "%move%"=="n" (
+if %py% gtr !l%level%m%mon%y! set /a l%level%m%mon%y+=1&set reverse=set /a l%level%m%mon%y-=1&set move=y
+if %py% lss !l%level%m%mon%y! set /a l%level%m%mon%y-=1&set reverse=set /a l%level%m%mon%y+=1&set move=y
+)
 if %range% lss 4 (
 set mx=!l%level%m%mon%x!
 set my=!l%level%m%mon%y!
@@ -731,16 +735,22 @@ set x=0
 set y=1
 goto render
 :render
-set /a x+=1
-set /a offx=%px%+%x%-8
+set /a offx=%px%+%x%-7
 set /a offy=%py%+%y%-5
+set /a off1x=%offx%+1
+set /a off2x=%off1x%+1
 if %offx% gtr %xlmax% set offx=%xlmax%
 if %offy% gtr %ylmax% set offy=%ylmax%
+if %off1x% gtr %xlmax% set off1x=%xlmax%
+if %off2x% gtr %xlmax% set off2x=%xlmax%
 if %offx% lss 1 set offx=1
 if %offy% lss 1 set offy=1
-set m%x%m%y%=!l%level%x%offx%x%offy%!
-if "%x%"=="15" set /a y+=1&set x=0
-if "%y%"=="10" (
+if %off1x% lss 1 set off1x=1
+if %off2x% lss 1 set off2x=1
+set m%x%m%y%=!l%level%x%offx%x%offy%!!l%level%x%off1x%x%offy%!!l%level%x%off2x%x%offy%!
+set /a x+=3
+if %x% gtr 15 set /a y+=1&set x=0
+if %y% gtr 9 (
 cls
 set vy=0
 goto view
@@ -749,7 +759,8 @@ goto render
 :view
 if "%vy%"=="9" goto main
 set /a vy+=1
-echo !m1m%vy%!!m2m%vy%!!m3m%vy%!!m4m%vy%!!m5m%vy%!!m6m%vy%!!m7m%vy%!!m8m%vy%!!m9m%vy%!!m10m%vy%!!m11m%vy%!!m12m%vy%!!m13m%vy%!!m14m%vy%!!m15m%vy%!!m16m%vy%!!m17m%vy%!!m18m%vy%!!m19m%vy%!
+echo !m0m%vy%!!m3m%vy%!!m6m%vy%!!m9m%vy%!!m12m%vy%!!m15m%vy%!
+::!m6m%vy%!!m7m%vy%!!m8m%vy%!!m9m%vy%!!m10m%vy%!!m11m%vy%!!m12m%vy%!!m13m%vy%!!m14m%vy%!!m15m%vy%!
 goto view
 :main
 if %xp% gtr %xpmax% goto levelup
@@ -883,7 +894,7 @@ goto gamble
 :newitembs
 call "Data\items.bat"
 set /a price=%levelspend%*20*%diff%
-set /a req=%price%/13/(%lvl%/10+1)
+set /a req=%price%/13/(%lvl%/11+1)
 set /a right=%gold%+1
 set select=1
 goto blacksmith
@@ -1237,11 +1248,9 @@ if "!inv%qw%m!"=="mod" set /a dmg+=!inv%qw%md!
 set /a ac=!inv%qac%d!+(%agim%/3)
 if "!inv%qac%m!"=="mod" set /a ac+=!inv%qac%md!
 set /a life=40+(%stam%*2)
-if "%new%"=="y" if "!inv%qw%m!"=="sta" set /a hp+=!inv%qw%md!*2
-if "%new%"=="y" if "!inv%qac%m!"=="sta" set /a hp+=!inv%qac%md!*2
 if "%lowreq%"=="y" goto error15
 set sreq=%strm%
-set /a req=!inv%select%c!/13/(%lvl%/10+1)
+set /a req=!inv%select%c!/13/(%lvl%/11+1)
 if %sreq% lss %req% (
 set select=%oldq%
 set lowreq=y

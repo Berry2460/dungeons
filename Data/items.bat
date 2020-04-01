@@ -200,10 +200,10 @@ if "%base%"=="Mail" if %dlevel% gtr 5 set /a select=%random% %%4 +1
 if "%base%"=="Mail" if %dlevel% gtr 6 set /a select=%random% %%5 +1
 if "%base%"=="Mail" set extra=!e%select%!
 if "%base%"=="Mail" if "%select%"=="1" set /a mod=(%random% %%3 +5)*%diff%&set levelspend=5
-if "%base%"=="Mail" if "%select%"=="2" set /a mod=(%random% %%4 +5)*%diff%&set levelspend=5
-if "%base%"=="Mail" if "%select%"=="3" set /a mod=(%random% %%5 +5)*%diff%&set levelspend=6
-if "%base%"=="Mail" if "%select%"=="4" set /a mod=(%random% %%5 +6)*%diff%&set levelspend=6
-if "%base%"=="Mail" if "%select%"=="5" set /a mod=(%random% %%6 +7)*%diff%&set levelspend=7
+if "%base%"=="Mail" if "%select%"=="2" set /a mod=(%random% %%3 +6)*%diff%&set levelspend=5
+if "%base%"=="Mail" if "%select%"=="3" set /a mod=(%random% %%3 +7)*%diff%&set levelspend=6
+if "%base%"=="Mail" if "%select%"=="4" set /a mod=(%random% %%4 +8)*%diff%&set levelspend=6
+if "%base%"=="Mail" if "%select%"=="5" set /a mod=(%random% %%4 +10)*%diff%&set levelspend=7
 set /a levelspend*=%diff%
 if "%magic%"=="0" set end=n
 if "%magic%"=="0" set /a mod+=(%random% %%2 +2)*%diff%

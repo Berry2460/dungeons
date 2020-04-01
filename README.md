@@ -44,5 +44,11 @@ Spaghetti code Batch game
 - Tweaked Strength requirements to require slightly less.
 - Fixed up some message screens and fixed a minor UI bug.
 
+### Update v1.22:
+- Fixed Exploit with + to stamina gear
+- Tweaked heavy armor rolls
+- Improved rendering speed
+
 ### KNOWN BUG(S):
-- Trading has a small chance of duplication
+- Trading has a small chance of duplication *(narrowed down)*
+- Players have a small chance of duplication in multiplayer games

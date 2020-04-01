@@ -735,7 +735,7 @@ set x=0
 set y=1
 goto render
 :render
-set /a offx=%px%+%x%-7
+set /a offx=%px%+%x%-8
 set /a offy=%py%+%y%-5
 set /a off1x=%offx%+1
 set /a off2x=%off1x%+1
@@ -760,7 +760,6 @@ goto render
 if "%vy%"=="9" goto main
 set /a vy+=1
 echo !m0m%vy%!!m3m%vy%!!m6m%vy%!!m9m%vy%!!m12m%vy%!!m15m%vy%!
-::!m6m%vy%!!m7m%vy%!!m8m%vy%!!m9m%vy%!!m10m%vy%!!m11m%vy%!!m12m%vy%!!m13m%vy%!!m14m%vy%!!m15m%vy%!
 goto view
 :main
 if %xp% gtr %xpmax% goto levelup

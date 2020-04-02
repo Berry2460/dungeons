@@ -37,7 +37,7 @@ set s2=-
 set s3=-
 set s4=-
 set s%select%=@
-echo Dungeons v1.22
+echo Dungeons v1.23
 echo ---------------
 echo [%s1%] New
 echo [%s2%] Load
@@ -65,10 +65,10 @@ set /a sv+=1
 if not exist "Data\save%sv%.bat" goto newstats
 goto findnew
 :newstats
-set points=8
-set str=0
-set agi=0
-set sta=0
+set points=4
+set str=2
+set agi=2
+set sta=2
 goto stats
 :stats
 cls
@@ -108,9 +108,9 @@ if "%select%"=="4" goto error2
 if "%select%"=="5" set select=1&goto menu
 )
 if "%errorlevel%"=="4" (
-if "%select%"=="1" if %str% gtr 0 set /a str-=1&set /a points+=1
-if "%select%"=="2" if %agi% gtr 0 set /a agi-=1&set /a points+=1
-if "%select%"=="3" if %sta% gtr 0 set /a sta-=1&set /a points+=1
+if "%select%"=="1" if %str% gtr 2 set /a str-=1&set /a points+=1
+if "%select%"=="2" if %agi% gtr 2 set /a agi-=1&set /a points+=1
+if "%select%"=="3" if %sta% gtr 2 set /a sta-=1&set /a points+=1
 )
 goto stats
 :name
@@ -521,6 +521,7 @@ set l9start=n
 set l10start=n
 set hostile=n
 set trade=n
+set ai=n
 set stairs=down
 if not exist "%dir%" goto error8
 call "%dir%\players.bat"
@@ -666,11 +667,11 @@ set tagree=n
 if exist "%dir%\read%player%.bat" call "%dir%\read%player%.bat"
 if exist "%dir%\read%player%.bat" del "%dir%\read%player%.bat"
 if "%done%"=="y" goto donegame
-if "%keepitem%"=="n" set inv%fitem%=n&set keepitem=y
 if "%trade%"=="y" (
 set fitem=0
 goto trade
 )
+if "%ai%"=="n" goto frame
 goto ai
 :ai
 if "%mon%"=="!mon%level%max!" goto frame
@@ -733,6 +734,7 @@ goto ai
 :frame
 set x=0
 set y=1
+set ai=n
 goto render
 :render
 set /a offx=%px%+%x%-8
@@ -747,6 +749,9 @@ if %offx% lss 1 set offx=1
 if %offy% lss 1 set offy=1
 if %off1x% lss 1 set off1x=1
 if %off2x% lss 1 set off2x=1
+if not "!l%level%x%offx%x%offy%!"=="[" if not "!l%level%x%offx%x%offy%!"=="/" if not "!l%level%x%offx%x%offy%!"=="." if not "!l%level%x%offx%x%offy%!"=="#" if not "!l%level%x%offx%x%offy%!"=="$" if not "!l%level%x%offx%x%offy%!"=="1" if not "!l%level%x%offx%x%offy%!"=="2" if not "!l%level%x%offx%x%offy%!"=="3" if not "!l%level%x%offx%x%offy%!"=="4" set ai=y
+if not "!l%level%x%off1x%x%offy%!"=="[" if not "!l%level%x%off1x%x%offy%!"=="/" if not "!l%level%x%off1x%x%offy%!"=="." if not "!l%level%x%off1x%x%offy%!"=="#" if not "!l%level%x%off1x%x%offy%!"=="$" if not "!l%level%x%off1x%x%offy%!"=="1" if not "!l%level%x%off1x%x%offy%!"=="2" if not "!l%level%x%off1x%x%offy%!"=="3" if not "!l%level%x%off1x%x%offy%!"=="4" set ai=y
+if not "!l%level%x%off2x%x%offy%!"=="[" if not "!l%level%x%off2x%x%offy%!"=="/" if not "!l%level%x%off2x%x%offy%!"=="." if not "!l%level%x%off2x%x%offy%!"=="#" if not "!l%level%x%off2x%x%offy%!"=="$" if not "!l%level%x%off2x%x%offy%!"=="1" if not "!l%level%x%off2x%x%offy%!"=="2" if not "!l%level%x%off2x%x%offy%!"=="3" if not "!l%level%x%off2x%x%offy%!"=="4" set ai=y
 set m%x%m%y%=!l%level%x%offx%x%offy%!!l%level%x%off1x%x%offy%!!l%level%x%off2x%x%offy%!
 set /a x+=3
 if %x% gtr 15 set /a y+=1&set x=0
@@ -893,7 +898,7 @@ goto gamble
 :newitembs
 call "Data\items.bat"
 set /a price=%levelspend%*20*%diff%
-set /a req=%price%/13/(%lvl%/11+1)
+set /a req=%price%/13/(%lvl%/10+1)
 set /a right=%gold%+1
 set select=1
 goto blacksmith
@@ -1169,10 +1174,6 @@ goto savechar
 cls
 if exist "%dir%\read%player%.bat" call "%dir%\read%player%.bat"
 if exist "%dir%\read%player%.bat" del "%dir%\read%player%.bat"
-if "%keepitem%"=="n" (
-set inv%fitem%=n
-set keepitem=y
-)
 set load=0
 if %select% gtr 10 set select=1
 if %select% lss 1 set select=9
@@ -1249,7 +1250,7 @@ if "!inv%qac%m!"=="mod" set /a ac+=!inv%qac%md!
 set /a life=40+(%stam%*2)
 if "%lowreq%"=="y" goto error15
 set sreq=%strm%
-set /a req=!inv%select%c!/13/(%lvl%/11+1)
+set /a req=!inv%select%c!/13/(%lvl%/10+1)
 if %sreq% lss %req% (
 set select=%oldq%
 set lowreq=y
@@ -1390,6 +1391,10 @@ if not "%p1%"=="n" echo set l%level%x%px%x%py%=!player!>>"%dir%\read1.bat"
 if not "%p2%"=="n" echo set l%level%x%px%x%py%=!player!>>"%dir%\read2.bat"
 if not "%p3%"=="n" echo set l%level%x%px%x%py%=!player!>>"%dir%\read3.bat"
 if not "%p4%"=="n" echo set l%level%x%px%x%py%=!player!>>"%dir%\read4.bat"
+if not "%inv1%"=="n" if not "%inv2%"=="n" if not "%inv3%"=="n" if not "%inv4%"=="n" if not "%inv5%"=="n" if not "%inv6%"=="n" if not "%inv7%"=="n" if not "%inv8%"=="n" if not "%inv9%"=="n" (
+set trade=n
+echo set trade=n>>"%dir%\read%pnum%.bat"
+)
 goto trade
 :trade
 cls
@@ -1459,6 +1464,7 @@ if "%select%"=="2" if %gold% gtr 4 (
 set /a ygold+=5
 set /a gold-=5
 )
+if "%select%"=="3" if "%yagree%%tagree%"=="yy" goto deal
 if "%select%"=="3" (
 if exist "%dir%\read%player%.bat" call "%dir%\read%player%.bat"
 if exist "%dir%\read%player%.bat" del "%dir%\read%player%.bat"
@@ -1492,7 +1498,7 @@ if "%fitem%"=="%qac%" goto itemwheel
 goto trade
 :deal
 set trade=n
-set keepitem=y
+set inv%fitem%=n
 set /a gold+=%tgold%
 set ifind=0
 if not "%titem%"=="n" goto addit
@@ -1507,7 +1513,6 @@ set inv%ifind%d=%titemd%
 set inv%ifind%m=%titemm%
 set inv%ifind%md=%titemmd%
 set inv%ifind%c=%titemc%
-echo set keepitem=n>>"%dir%\read%pnum%.bat"
 goto gamedata
 )
 goto addit

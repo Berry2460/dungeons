@@ -52,6 +52,7 @@ Spaghetti code Batch game
 ### Update v1.23:
 - Fixed item duplication bug
 - AI no longer runs off screen, improving speed
+- Optimized starting stats for balanced characters
 
 ### KNOWN BUG(S):
 - Players have a small chance of duplication in multiplayer games

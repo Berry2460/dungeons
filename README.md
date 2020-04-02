@@ -49,6 +49,9 @@ Spaghetti code Batch game
 - Tweaked heavy armor rolls
 - Improved rendering speed
 
+### Update v1.23:
+- Fixed item duplication bug
+- AI no longer runs off screen, improving speed
+
 ### KNOWN BUG(S):
-- Trading has a small chance of duplication *(narrowed down)*
 - Players have a small chance of duplication in multiplayer games

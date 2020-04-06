@@ -55,4 +55,4 @@ Spaghetti code Batch game
 - Optimized starting stats for balanced characters
 
 ### KNOWN BUG(S):
-- Players have a small chance of duplication in multiplayer games
+- Players have a small chance of duplication in multiplayer games *(narrowed down to desyncs)*

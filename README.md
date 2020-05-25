@@ -54,5 +54,9 @@ Spaghetti code Batch game
 - AI no longer runs off screen, improving speed
 - Optimized starting stats for balanced characters
 
+### Update v1.24:
+- Fixed armor equipping when not meeting STR requirement
+- tweaked monsters and starting stats
+
 ### KNOWN BUG(S):
-- Players have a small chance of duplication in multiplayer games *(narrowed down to desyncs)*
+- In large games (3-4 players) Players have a small chance of desyncing, causing the player to duplicate itself. 2 Player games still have a chance, but is very rare.

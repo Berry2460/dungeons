@@ -25,21 +25,21 @@ if "%search%"=="burning" set icon=B
 if "%search%"=="burning" set type=undead
 if "%search%"=="burning" set mname=Burning Dead
 if "%search%"=="horror" set mhp=46
-if "%search%"=="horror" set mdmg=22
+if "%search%"=="horror" set mdmg=23
 if "%search%"=="horror" set icon=H
 if "%search%"=="horror" set type=undead
 if "%search%"=="horror" set mname=Horror
 if "%search%"=="plague" set mhp=50
-if "%search%"=="plague" set mdmg=25
+if "%search%"=="plague" set mdmg=26
 if "%search%"=="plague" set icon=P
 if "%search%"=="plague" set type=undead
 if "%search%"=="plague" set mname=Plague Walker
-if "%search%"=="lich" set mhp=54
+if "%search%"=="lich" set mhp=55
 if "%search%"=="lich" set mdmg=31
 if "%search%"=="lich" set icon=L
 if "%search%"=="lich" set type=undead
 if "%search%"=="lich" set mname=Lich
-if "%search%"=="death" set mhp=58
+if "%search%"=="death" set mhp=60
 if "%search%"=="death" set mdmg=35
 if "%search%"=="death" set icon=A
 if "%search%"=="death" set type=undead
@@ -65,11 +65,11 @@ if "%search%"=="goatman" set icon=a
 if "%search%"=="goatman" set type=beast
 if "%search%"=="goatman" set mname=Goatman
 if "%search%"=="orc" set mhp=39
-if "%search%"=="orc" set mdmg=19
+if "%search%"=="orc" set mdmg=20
 if "%search%"=="orc" set icon=o
 if "%search%"=="orc" set type=beast
 if "%search%"=="orc" set mname=Orc
-if "%search%"=="ogre" set mhp=47
+if "%search%"=="ogre" set mhp=48
 if "%search%"=="ogre" set mdmg=23
 if "%search%"=="ogre" set icon=O
 if "%search%"=="ogre" set type=beast
@@ -84,8 +84,8 @@ if "%search%"=="titan" set mdmg=31
 if "%search%"=="titan" set icon=T
 if "%search%"=="titan" set type=beast
 if "%search%"=="titan" set mname=Titan
-if "%search%"=="demi" set mhp=64
-if "%search%"=="demi" set mdmg=32
+if "%search%"=="demi" set mhp=65
+if "%search%"=="demi" set mdmg=33
 if "%search%"=="demi" set icon=E
 if "%search%"=="demi" set type=beast
 if "%search%"=="demi" set mname=Demi God

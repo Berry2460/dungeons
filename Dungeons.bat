@@ -37,7 +37,7 @@ set s2=-
 set s3=-
 set s4=-
 set s%select%=@
-echo Dungeons v1.23
+echo Dungeons v1.24
 echo ---------------
 echo [%s1%] New
 echo [%s2%] Load
@@ -67,8 +67,8 @@ goto findnew
 :newstats
 set points=4
 set str=2
-set agi=2
-set sta=2
+set agi=1
+set sta=1
 goto stats
 :stats
 cls
@@ -1230,7 +1230,7 @@ goto inv
 :applyinv
 if "!inv%select%t!"=="sharp" set oldq=%qw%
 if "!inv%select%t!"=="blunt" set oldq=%qw%
-if "!inv%select%t!"=="armor" set oldq=%qa%
+if "!inv%select%t!"=="armor" set oldq=%qac%
 if "!inv%select%t!"=="sharp" set qw=%select%
 if "!inv%select%t!"=="blunt" set qw=%select%
 if "!inv%select%t!"=="armor" set qac=%select%

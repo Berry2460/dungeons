@@ -58,5 +58,9 @@ Spaghetti code Batch game
 - Fixed armor equipping when not meeting STR requirement
 - tweaked monsters and starting stats
 
+### Update v1.25:
+- Fixed return to town progression exploit
+- tweaked monster stats
+
 ### KNOWN BUG(S):
 - In large games (3-4 players) Players have a small chance of desyncing, causing the player to duplicate itself. 2 Player games still have a chance, but is very rare.

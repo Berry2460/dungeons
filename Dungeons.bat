@@ -37,7 +37,7 @@ set s2=-
 set s3=-
 set s4=-
 set s%select%=@
-echo Dungeons v1.24
+echo Dungeons v1.25
 echo ---------------
 echo [%s1%] New
 echo [%s2%] Load
@@ -1378,6 +1378,7 @@ goto loadslvl
 echo ------------------
 echo [%s11%] Back
 choice /c:wsd /n /m ""
+set stairs=down
 if "%errorlevel%"=="1" set /a select-=1&set up=y
 if "%errorlevel%"=="2" set /a select+=1&set up=n
 if "%errorlevel%"=="3" (

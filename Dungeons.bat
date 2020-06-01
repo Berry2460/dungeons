@@ -37,7 +37,7 @@ set s2=-
 set s3=-
 set s4=-
 set s%select%=@
-echo Dungeons v1.25
+echo Dungeons v1.26
 echo ---------------
 echo [%s1%] New
 echo [%s2%] Load
@@ -109,8 +109,8 @@ if "%select%"=="5" set select=1&goto menu
 )
 if "%errorlevel%"=="4" (
 if "%select%"=="1" if %str% gtr 2 set /a str-=1&set /a points+=1
-if "%select%"=="2" if %agi% gtr 2 set /a agi-=1&set /a points+=1
-if "%select%"=="3" if %sta% gtr 2 set /a sta-=1&set /a points+=1
+if "%select%"=="2" if %agi% gtr 1 set /a agi-=1&set /a points+=1
+if "%select%"=="3" if %sta% gtr 1 set /a sta-=1&set /a points+=1
 )
 goto stats
 :name

@@ -62,5 +62,8 @@ Spaghetti code Batch game
 - Fixed return to town progression exploit
 - tweaked monster stats
 
+### Update v1.26:
+- Fixed a minor starting stats bug introduced in 1.24
+
 ### KNOWN BUG(S):
 - In large games (3-4 players) Players have a small chance of desyncing, causing the player to duplicate itself. 2 Player games still have a chance, but is very rare.
